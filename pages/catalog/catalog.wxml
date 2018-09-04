@@ -1,0 +1,10 @@
+<view class='container catalog'>
+  <image src='../../static/imgs/loading3.svg' wx:if="{{isloading}}" class='loading'></image>
+  <view wx:else>
+    <view wx:for="{{catalogData.data}}" wx:key="{{index}}" class='catalog-item'>
+      <navigator url="{{'/pages/book/book?id=' + item._id + '&bookId=' + bookId}}" class="link">
+        {{item.title}}
+      </navigator>
+    </view>
+  </view>
+</view>
