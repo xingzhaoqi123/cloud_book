@@ -8,7 +8,7 @@ Page({
     swiperData: [],
     mainContent: [],
     indicatorDots: true,
-    autoplay: false,
+    autoplay: true,
     interval: 5000,
     duration: 1000,
     isloading: false,

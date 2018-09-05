@@ -104,7 +104,7 @@
 }
 
 .read-btn-wrap .b-btn {
-  background: #409eff;
+  background: #91B1C6;
   color: #fff;
   font-size: 12px;
   margin: 0;

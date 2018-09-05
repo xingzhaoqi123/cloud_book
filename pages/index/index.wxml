@@ -14,10 +14,9 @@
         <view class='title'>{{item.title}}</view>
         <view class='content' wx:for="{{item.books}}" wx:key="{{index}}">
           <view class='box-l'>
-            <image src="{{item.img}}" class='img-l'></image>
+            <image src="{{item.img}}" class='img-l' bindtap='jumpPage' data-id='{{item._id}}'></image>
           </view>
-          <view class='box-r'>
-
+          <view class='box-r' bindtap='jumpPage' data-id='{{item._id}}'>
             <view>
               <view class='book-title'>{{item.title}}</view>
               <view class='book-desc'>{{item.desc}}</view>
@@ -30,8 +29,6 @@
                 <text class='many'>{{item.looknums}}人在看</text>
               </view>
             </view>
-
-
           </view>
         </view>
       </view>

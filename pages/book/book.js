@@ -13,43 +13,15 @@ Page({
     title: "",
     isShow: false,
     catalog: [],
-    L_move: {},
-    R_move: {}
+    isloading: false,
+    font: 40,
+    index: ""
   },
-  trigger() {//Test处理动画效果
-    let Lmove = wx.createAnimation({
-      transformOrigin: "50% 50%",
-      duration: 1000,
-      timingFunction: "ease",
-      delay: 0,
-    });
-    Lmove.translateX(618).step({
-      duration: 1000
-    });
-    this.setData({
-      L_move: Lmove.export()
-    })
-    let Rmove = wx.createAnimation({
-      transformOrigin: "50% 50%",
-      duration: 1000,
-      timingFunction: "ease",
-      delay: 0,
-    });
-    Lmove.translateX(-618).step({
-      duration: 1000
-    });
-    this.setData({
-      R_move: Rmove.export()
-    })
-  },
-
-
-
 
   onLoad: function(options) {
     this.setData({
         _id: options.id,
-        bookId: options.bookId
+        bookId: options.bookId,
       }),
       this.getBook();
     this.getcatalog();
@@ -57,16 +29,24 @@ Page({
   getcatalog() {
     fetch.get(`/titles/${this.data.bookId}`).then(res => {
       this.setData({
-        catalog: res.data
+        catalog: res.data.data
       })
     })
   },
   getBook() {
+    this.setData({
+      isloading: true
+    })
     fetch.get(`/article/${this.data._id}`).then(res => {
-      let data = app.towxml.toJson(res.data.data.article.content, 'markdown');
       this.setData({
-        article: data,
-        title: res.data.data.title
+        article: res.data.data.article.content,
+        title: res.data.data.title,
+        isloading: false,
+        index: res.data.data.article.index
+      })
+    }).catch(err => {
+      this.setData({
+        isloading: false
       })
     })
   },
@@ -83,15 +63,65 @@ Page({
     const id = event.currentTarget.dataset.id;
     this.setData({
       _id: id,
+      isShow: false
     })
     this.getBook();
   },
 
+  fontBig() {
+    if (this.data.font > 46) {
+      wx.showToast({
+        title: '字体过大',
+      })
+    } else {
+      this.setData({
+        font: this.data.font + 2
+      })
+    }
 
-
-
-
-
+  },
+  fontsmall() {
+    if (this.data.font < 34) {
+      wx.showToast({
+        title: '字体过小',
+      })
+    } else {
+      this.setData({
+        font: this.data.font - 2
+      })
+    }
+  },
+  jumpNext() {
+    let catalog = this.data.catalog;
+    if (catalog[this.data.index + 1]) {
+      this.setData({
+        _id: catalog[this.data.index + 1]._id
+      })
+      this.getBook()
+    } else {
+      wx.showToast({
+        title: '最后一章',
+      })
+    }
+  },
+  jumpPrev() {
+    let catalog = this.data.catalog;
+    if (this.data.index - 1 < 0) {
+      wx.showToast({
+        title: '第一章',
+      })
+    } else {
+      this.setData({
+        _id: catalog[this.data.index - 1]._id
+      })
+      this.getBook()
+    }
+  },
+  jumphome() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    })
+  },
 
 
   /**

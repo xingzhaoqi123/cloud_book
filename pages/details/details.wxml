@@ -40,7 +40,7 @@
       </view>
     </view>
     <view class="read-btn-wrap">
-      <button class="b-btn" >阅读该书籍</button>
+      <button class="b-btn" bindtap='jumpCatalog'>阅读该书籍</button>
     </view>
   </view>
 </view>

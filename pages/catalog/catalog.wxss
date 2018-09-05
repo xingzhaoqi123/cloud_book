@@ -5,7 +5,7 @@
 
 .catalog .link {
   line-height: 2;
-  border-bottom: 2rpx solid #333;
+  border-bottom: 2rpx solid #91B1C6;
 }
 .loading{
   position: absolute;
