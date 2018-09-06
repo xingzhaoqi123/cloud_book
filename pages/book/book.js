@@ -29,7 +29,7 @@ Page({
   getcatalog() {
     fetch.get(`/titles/${this.data.bookId}`).then(res => {
       this.setData({
-        catalog: res.data.data
+        catalog: res.data
       })
     })
   },
@@ -39,10 +39,10 @@ Page({
     })
     fetch.get(`/article/${this.data._id}`).then(res => {
       this.setData({
-        article: res.data.data.article.content,
-        title: res.data.data.title,
+        article: res.data.article.content,
+        title: res.data.title,
         isloading: false,
-        index: res.data.data.article.index
+        index: res.data.article.index
       })
     }).catch(err => {
       this.setData({

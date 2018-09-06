@@ -9,7 +9,8 @@ Page({
   data: {
     bookId: "",
     bookData: {},
-    isloading: false
+    isloading: false,
+   isCollect:""
   },
 
   /**
@@ -27,11 +28,12 @@ Page({
       isloading: true
     })
     fetch.get(`/book/${this.data.bookId}`).then(res => {
-
       this.setData({
-        bookData: res.data,
-        isloading: false
+        bookData: res,
+        isloading: false,
+        isCollect: res.isCollect
       })
+      console.log(res);
     }).catch(err => {
       this.setData({
         isloading: false
@@ -43,4 +45,20 @@ Page({
       url: `/pages/catalog/catalog?id=${this.data.bookId}`,
     })
   },
+  onShareAppMessage(res) {
+    if (res.from == "button") {
+      console.log(res.target)
+    }
+    return {
+      title: this.data.bookData.data.title,
+      path: `/pages/index/index?id=${this.data.bookId}`,
+      imageUrl: this.data.bookData.data.img
+    }
+  },
+  handclick(){
+    this.setData({
+      isCollect:1
+    })
+    console.log(this.data.isCollect);
+  }
 })

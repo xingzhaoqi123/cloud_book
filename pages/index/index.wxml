@@ -34,4 +34,13 @@
       </view>
     </view>
   </view>
+  <view wx:if="{{hasmore}}">
+  <view wx:if="{{loadBottom}}">
+    <image src='../../static/imgs/loading4.svg' class='loading-bottom'>
+    </image>
+  </view>
+  </view>
+  <view class='line-bottom' wx:if="{{!hasmore}}">
+    <text class='line-bottom-text'>我也是有底线的</text>
+  </view>
 </view>
