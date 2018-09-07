@@ -4,8 +4,8 @@
     "pages/details/details",
     "pages/book/book",
     "pages/catalog/catalog",
-    "pages/collection/collention",
-    "pages/collection/collection"
+    "pages/collection/collection",
+    "pages/read/read"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,18 +19,22 @@
     "borderStyle": "white",
     "list": [
       {
-        "text": "首页",
-        "selectedIconPath": "/static/homeIconfont/主页.png",
-        "iconPath":"/static/homeIconfont/主页1.png",
+        "text": "",
+        "selectedIconPath": "/static/imgs/首页.png",
+        "iconPath": "/static/imgs/首页_1.png",
         "pagePath": "pages/index/index"
       },
       {
-        "text": "首页",
-        "pagePath": "pages/index/index"
+        "text": "",
+        "selectedIconPath": "/static/imgs/read2.png",
+        "iconPath": "/static/imgs/read.png",
+        "pagePath": "pages/read/read"
       },
       {
-        "text": "首页",
-        "pagePath": "pages/index/index"
+        "text": "",
+        "selectedIconPath": "/static/imgs/个人中心.png",
+        "iconPath": "/static/imgs/个人中心-我的.png",
+        "pagePath": "pages/collection/collection"
       }
     ]
   }

@@ -1,0 +1,28 @@
+<view class='collection'>
+  <view class='content' wx:for="{{readData}}" wx:key="{{index}}">
+    <view class='box-l'>
+      <image src='{{item.book.img}}' class='img'></image>
+    </view>
+    <view class='box-r'>
+      <view class='book-title'>{{item.book.title}}</view>
+      <view class='chapter'>书籍{{item.title.index+1}}/123章节</view>
+      <view class='speed'>
+        <progress percent="{{item.pro}}" class='speed-pro' color="red" stroke-width="6" activeColor="green" backgroundColor="#BDB8B2" />
+        <text class='speed-text'>已看{{item.pro}}%</text>
+      </view>
+      <view class='record'>上次查看:{{item.title.title}}</view>
+      <view class='button'>
+        <navigator url="{{'/pages/book/book?id=' + item.title._id + '&bookId=' + item.title.bookId+'&length='+item.title.total}}">
+          <button class='btn'>继续阅读</button>
+        </navigator>
+        <navigator url="{{'/pages/details/details?id='+ item.title.bookId}}">
+          <button class='btn'>查看文档</button>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class='bottom'>
+    <text class='bottom-text'>没有更多了</text>
+    <view class='bottom-line'></view>
+  </view>
+</view>

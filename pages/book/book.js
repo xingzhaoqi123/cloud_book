@@ -2,6 +2,7 @@ import {
   fetch
 } from "../../utils/util.js"
 const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
@@ -15,16 +16,18 @@ Page({
     catalog: [],
     isloading: false,
     font: 40,
-    index: ""
+    index: "",
   },
 
   onLoad: function(options) {
     this.setData({
         _id: options.id,
         bookId: options.bookId,
+        length: options.length
       }),
       this.getBook();
     this.getcatalog();
+
   },
   getcatalog() {
     fetch.get(`/titles/${this.data.bookId}`).then(res => {
@@ -118,7 +121,7 @@ Page({
     }
   },
   jumphome() {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/index/index',
     })
   },

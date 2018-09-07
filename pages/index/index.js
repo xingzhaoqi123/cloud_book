@@ -25,7 +25,6 @@ Page({
         isloading: true,
         pn: 1,
         hasmore: true,
-
       })
       Promise.all([this.getData(), this.getContent()]).then(res => {
         this.setData({

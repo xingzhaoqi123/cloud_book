@@ -1,6 +1,9 @@
 import {
   fetch
 } from "../../utils/util.js"
+var app = getApp();
+
+
 Page({
 
   /**
@@ -9,7 +12,8 @@ Page({
   data: {
     bookId: "",
     catalogData: [],
-    isloading: false
+    isloading: false,
+    length:""
   },
 
   /**
@@ -28,12 +32,18 @@ Page({
     fetch.get(`/titles/${this.data.bookId}`).then(res => {
       this.setData({
         catalogData: res.data,
-        isloading: false
+        isloading: false,
+        length:res.data.length
       })
+    
+
     }).catch(err => {
       this.setData({
         isloading: false
       })
     })
-  }
+
+  },
+
+
 })
